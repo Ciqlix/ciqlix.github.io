@@ -1,0 +1,252 @@
+@font-face {
+    font-family: 'Apercu';
+    src: url('../resources/apercu-regular-pro.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Apercu', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+p {
+    text-align: justify;
+}
+
+#main-title {
+    text-align: center;
+    /* Center the title */
+    margin-bottom: 20px;
+    /* Ensure it's horizontally centered */
+    font-size: 24px;
+    font-weight: normal;
+}
+
+body.blurred {
+    overflow: hidden;
+    /* Prevent scrolling when popup is open */
+}
+
+body.blurred> :not(.list-popup) {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg,
+            #E6E6FA, #FFFAF0, #B0E0E6, #FAD6A5,
+            #FFEFD5, #E0FFFF, #ADD8E6, #F5DEB3,
+            #FFB6C1, #D8BFD8, #87CEFA, #FFDAB9,
+            #FFDEAD, #E6E6FA, #FFFAF0, #B0E0E6,
+            #FAD6A5, #FFEFD5, #E0FFFF, #ADD8E6,
+            #F5DEB3, #FFB6C1, #D8BFD8, #87CEFA,
+            #FFDAB9, #FFDEAD, #E6E6FA);
+    /* Added #E6E6FA at the end */
+    background-size: 2400% 2400%;
+    /* Adjusted from 1200% to 2400% */
+    animation: moveBackground 35s linear infinite;
+}
+
+.list-btn-container {
+    display: flex;
+    /* Add this container for buttons */
+    justify-content: center;
+}
+
+@keyframes moveBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.list-btn {
+    border: none;
+    border-radius: 20px;
+    margin: 40px;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background: white;
+    /* Button background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Button shadow for depth */
+}
+
+.list-btn img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    /* Rounded corners for images */
+}
+
+.list-btn span {
+    display: block;
+    text-align: center;
+    font-family: 'Apercu', sans-serif;
+    margin-top: 10px;
+}
+
+.list-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow on hover */
+}
+
+.list-popup {
+    position: fixed;
+    width: 350px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.3s;
+    visibility: hidden;
+    z-index: 100;
+}
+
+.list-popup img {
+    width: 250px;
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.list-popup.visible {
+    transform: translate(-50%, -50%) scale(1);
+    visibility: visible;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.popup-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+header {
+    top: 0;
+    right: 0;
+    position: fixed;
+    padding: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    align-items: center;
+}
+
+#contact-email {
+    background: white;
+    border: 2px solid white;
+    /* White border */
+    border-radius: 20px;
+    /* Rounded corners */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Button shadow for depth */
+    padding: 10px;
+    /* Padding around the image */
+    transition: transform 0.3s;
+}
+
+#contact-email:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Enhanced shadow on hover */
+}
+
+#contact-email img {
+    width: 60px;
+    height: auto;
+}
+
+footer a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 5px;
+}
+
+/* Mobile view */
+@media only screen and (max-width: 750px) {
+    .list-btn-container {
+        flex-direction: column;
+        /* Stack buttons vertically on small screens */
+    }
+
+    #main-container {
+        flex-direction: column;
+        /* Stack elements vertically */
+    }
+
+    .list-btn {
+        min-width: 275px;
+        /* Adjust the width to fit mobile screens */
+        margin: 20px auto;
+        /* Center buttons with automatic horizontal margins */
+    }
+
+    .list-btn img {
+        width: 250px;
+    }
+
+    footer {
+        padding: 20px;
+    }
+
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #main-title {
+        display: none;
+        /* Hide the title on small screens */
+    }
+}
